@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados del Test Vocacional</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Resultados del Test Vocacional</h1>
+    </header>
+
+    <main>
+        <h2>Tus Resultados</h2>
+        <p id="resultado"></p>
+    </main>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const social = parseInt(urlParams.get('social'));
+            const practical = parseInt(urlParams.get('practical'));
+            const research = parseInt(urlParams.get('research'));
+            const artistic = parseInt(urlParams.get('artistic'));
+            const entrepreneurial = parseInt(urlParams.get('entrepreneurial'));
+            const leadership = parseInt(urlParams.get('leadership'));
+
+            let recommendation = '';
+
+            if (social > practical && social > research && social > artistic && social > entrepreneurial && social > leadership) {
+                recommendation = 'Te recomendamos considerar carreras en áreas sociales como Psicología, Trabajo Social o Educación.';
+            } else if (practical > social && practical > research && practical > artistic && practical > entrepreneurial && practical > leadership) {
+                recommendation = 'Carreras prácticas como Ingeniería, Arquitectura o Diseño podrían ser una excelente opción para ti.';
+            } else if (research > social && research > practical && research > artistic && research > entrepreneurial && research > leadership) {
+                recommendation = 'Podrías destacar en carreras de investigación como Biología, Física o Ciencias de la Computación.';
+            } else if (artistic > social && artistic > practical && artistic > research && artistic > entrepreneurial && artistic > leadership) {
+                recommendation = 'Carreras creativas como Diseño Gráfico, Bellas Artes o Publicidad son ideales para ti.';
+            } else if (entrepreneurial > social && entrepreneurial > practical && entrepreneurial > research && entrepreneurial > artistic && entrepreneurial > leadership) {
+                recommendation = 'Carreras empresariales como Administración, Finanzas o Marketing podrían ser tu mejor opción.';
+            } else if (leadership > social && leadership > practical && leadership > research && leadership > artistic && leadership > entrepreneurial) {
+                recommendation = 'Tienes un perfil de liderazgo. Carreras en Gestión, Recursos Humanos o Administración de Proyectos serían adecuadas.';
+            } else {
+                recommendation = 'Tienes un perfil equilibrado. Considera explorar más para encontrar lo que realmente te apasiona.';
+            }
+
+            document.getElementById('resultado').innerText = recommendation;
+        }
+    </script>
+</body>
+</html>
